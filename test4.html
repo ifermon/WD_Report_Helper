@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 </head>
 
 <body>
@@ -24,111 +24,71 @@
             margin-right: 10px;
         }
     </style>
-    <select class="form-control basicAutoSelect" name="simple_select" placeholder="type to search..." data-url="./master_list.json" autocomplete="off"></select>
-
-    <div class="select">
-        <select class="form-control" id="locale">
-            <option value="en-US" selected>en-US</option>
-        </select>
-    </div>
-    <div class="select">
-        <input type='text' id='BusinessObject' list='BusObjList' />
-        <datalist id='BusObjList'>
-            <option id='Report_Column_All'>Report Column (All)</option>
-            <option id='Standard_Report'>Standard Report</option>
-            <option id='Class'>Class</option>
-            <option id='Static_Application_Word_Bucket'>Static Application Word Bucket</option>
-            <option id='Default_Business_Object'>Default Business Object</option>
-            <option id='Instance'>Instance</option>
-            <option id='Workday_Account'>Workday Account</option>
-            <option id='Field'>Field</option>
-            <option id='Person'>Person</option>
-            <option id='Processed_Transaction'>Processed Transaction</option>
-            <option id='Element'>Element</option>
-            <option id='Instance_Set'>Instance Set</option>
-            <option id='Attribute'>Attribute</option>
-            <option id='Date_Attribute'>Date Attribute</option>
-            <option id='Numeric_Attribute'>Numeric Attribute</option>
-            <option id='Action_Category'>Action Category</option>
-            <option id='Organization'>Organization</option>
-            <option id='Position_-_Position_Management'>Position - Position Management</option>
-            <option id='Position_and_Job_-_All_Staffing_Models'>Position and Job - All Staffing Models</option>
-            <option id='Display_Option'>Display Option</option>
-            <option id='Worker'>Worker</option>
-            <option id='Job_Classification'>Job Classification</option>
-            <option id='Compensation_Rule_Assignments'>Compensation Rule Assignments</option>
-            <option id='Job_Profile'>Job Profile</option>
-            <option id='Location'>Location</option>
-            <option id='Location_Type'>Location Type</option>
-            <option id='Compensation_Plan_Assignment_Snapshot'>Compensation Plan Assignment Snapshot</option>
-            <option id='Team_Leader'>Team Leader</option>
-            <option id='Manager'>Manager</option>
-            <option id='HR_Partner'>HR Partner</option>
-            <option id='Compensation_Partner'>Compensation Partner</option>
-            <option id='Web_Service_Operation'>Web Service Operation</option>
-            <option id='Data_Source'>Data Source</option>
-            <option id='WS_Test_Employee'>WS Test Employee</option>
-        </datalist>
-        <button type="button" class="btn btn-primary" onclick='getBusObj'>Default</button>
-    </div>
     <div class="container-fluid">
-        <div class="toolbar">
-            <button id="refresh_here" class="btn btn-secondary">Refresh</button>
+        <div class="container-fluid">
+            <h1>Worker</h1>
+            <select id="mysel" onchange="loadTable(this.options[this.selectedIndex].getAttribute('data-tokens'))" class="selectpicker" title="Select business object..." data-live-search="true">
+                <option data-tokens='Report_Column_All' id='Report_Column_All'>Report Column (All)</option>
+                <option data-tokens='Standard_Report' id='Standard_Report'>Standard Report</option>
+                <option data-tokens='Class' id='Class'>Class</option>
+            </select>
+            <table class="table table-bordered table-hover" id="table" data-toggle="table" data-search="true" data-url="./bus_objs/Worker.json" data-toolbar="#toolbar" data-show-refresh="true" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true"
+                data-show-columns-toggle-all="true" data-detail-view="true" data-show-export="true" data-click-to-select="true" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-id-field="Field" data-show-footer="true">
+                <thead>
+                    <tr>
+                        <th data-field="Field" data-sortable='true'>Field</th>
+                        <th data-field="Business Object" data-sortable='true'>Business Object</th>
+                        <th data-field="Business Object Name" data-sortable='true'>Business Object Name</th>
+                        <th data-field="Calculated Field Function" data-sortable='true'>Calculated Field Function</th>
+                        <th data-field="Description" data-sortable='true'>Description</th>
+                        <th data-field="Field Name" data-sortable='true'>Field Name</th>
+                        <th data-field="Field Source" data-sortable='true'>Field Source</th>
+                        <th data-field="is Calculated Field" data-sortable='true'>is Calculated Field</th>
+                        <th data-field="Related Business Object Name" data-sortable='true'>Related Business Object Name
+                        </th>
+                        <th data-field="Report Field Type" data-sortable='true'>Report Field Type</th>
+                    </tr>
+                </thead>
+            </table>
         </div>
-        <h1>Worker</h1>
-        <table class="table table-bordered table-hover" id="table" data-toggle="table" data-search="true" data-url="./bus_objs/Worker.json" data-toolbar="#toolbar" data-show-refresh="true" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true"
-            data-show-columns-toggle-all="true" data-detail-view="true" data-show-export="true" data-click-to-select="true" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-id-field="Field" data-show-footer="true">
-            <thead>
-                <tr>
-                    <th data-field="Field" data-sortable='true'>Field</th>
-                    <th data-field="Business Object" data-sortable='true'>Business Object</th>
-                    <th data-field="Business Object Name" data-sortable='true'>Business Object Name</th>
-                    <th data-field="Calculated Field Function" data-sortable='true'>Calculated Field Function</th>
-                    <th data-field="Description" data-sortable='true'>Description</th>
-                    <th data-field="Field Name" data-sortable='true'>Field Name</th>
-                    <th data-field="Field Source" data-sortable='true'>Field Source</th>
-                    <th data-field="is Calculated Field" data-sortable='true'>is Calculated Field</th>
-                    <th data-field="Related Business Object Name" data-sortable='true'>Related Business Object Name</th>
-                    <th data-field="Report Field Type" data-sortable='true'>Report Field Type</th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@v2.3.0/dist/latest/bootstrap-autocomplete.min.js">
-    </script>
-    <script>
-        var $table = $('#table')
-        $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+        <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+        <script>
+            var $table = $('#table')
 
-        function getBusObj() {
-            var selectedBusObj = document.getElementById("BusinessObject").value
-            alert("here it is: " + selectedBusObj)
-        }
+            function getBusObj() {
+                var selectedBusObj = document.getElementById("businessObject").value
+                alert("here it is: " + selectedBusObj)
 
-        function detailFormatter(index, row) {
-            var html = []
-            $.each(row, function(key, value) {
-                html.push('<p><b>' + key + ':</b> ' + value + '</p>')
-            })
-            return html.join('')
-        }
+            }
 
-
-        $(function() {
-            $('#refresh_here').click(function() {
-                $table.bootstrapTable('refresh', {
-                    'url': './test.json'
+            function detailFormatter(index, row) {
+                var html = []
+                $.each(row, function(key, value) {
+                    html.push('<p><b>' + key + ':</b> ' + value + '</p>')
                 })
+                return html.join('')
+            }
+
+            function loadTable(fname) {
+                var selectedBusObj = document.getElementById("mysel").value
+                alert("Here it is: " + selectedBusObj + "--" + fname)
+                $table.bootstrapTable('refresh', {
+                    'url': 'bus_objs/' + fname + '.json'
+                })
+            }
+
+            $(function() {
+                $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+                $('.selectpicker').selectpicker();
             })
-        })
-        $('.basicAutoSelect').autoComplete();
-    </script>
+        </script>
 
 </body>
 
