@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hello, Bootstrap Table!</title>
+    <title>Workday Object Browser</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -26,14 +26,14 @@
     </style>
     <div class="container-fluid">
         <div class="container-fluid">
-            <h1>Worker</h1>
+            <h1 id="Table Title">Nothing yet...</h1>
             <select id="mysel" onchange="loadTable(this.options[this.selectedIndex].getAttribute('data-tokens'))" class="selectpicker" title="Select business object..." data-live-search="true">
                 <option data-tokens='Report_Column_All' id='Report_Column_All'>Report Column (All)</option>
                 <option data-tokens='Standard_Report' id='Standard_Report'>Standard Report</option>
                 <option data-tokens='Class' id='Class'>Class</option>
             </select>
-            <table class="table table-bordered table-hover" id="table" data-toggle="table" data-search="true" data-url="./bus_objs/Worker.json" data-toolbar="#toolbar" data-show-refresh="true" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true"
-                data-show-columns-toggle-all="true" data-detail-view="true" data-show-export="true" data-click-to-select="true" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-id-field="Field" data-show-footer="true">
+            <table class="table table-bordered table-hover" id="table" data-toggle="table" data-search="true" data-url="" data-toolbar="#toolbar" data-show-refresh="true" data-show-toggle="true" data-show-fullscreen="true" data-show-columns="true" data-show-columns-toggle-all="true"
+                data-detail-view="true" data-show-export="true" data-click-to-select="true" data-detail-formatter="detailFormatter" data-minimum-count-columns="2" data-id-field="Field" data-show-footer="true">
                 <thead>
                     <tr>
                         <th data-field="Field" data-sortable='true'>Field</th>
@@ -62,12 +62,6 @@
         <script>
             var $table = $('#table')
 
-            function getBusObj() {
-                var selectedBusObj = document.getElementById("businessObject").value
-                alert("here it is: " + selectedBusObj)
-
-            }
-
             function detailFormatter(index, row) {
                 var html = []
                 $.each(row, function(key, value) {
@@ -76,12 +70,13 @@
                 return html.join('')
             }
 
+            // This reload the table with the selected business object
             function loadTable(fname) {
                 var selectedBusObj = document.getElementById("mysel").value
-                alert("Here it is: " + selectedBusObj + "--" + fname)
                 $table.bootstrapTable('refresh', {
                     'url': 'bus_objs/' + fname + '.json'
                 })
+                document.getElementById("Table Title").innerHTML = selectedBusObj
             }
 
             $(function() {
