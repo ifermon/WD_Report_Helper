@@ -15,16 +15,6 @@
 </head>
 
 <body>
-    <style>
-        .select,
-        #locale {
-            width: 100%;
-        }
-        
-        .like {
-            margin-right: 10px;
-        }
-    </style>
     <div class='container-fluid'>
         <a href="./test.html">Go to test 1</a>
     </div>
@@ -4910,7 +4900,7 @@
 
             // This reload the table with the selected business object
             function loadTable(fname) {
-                window.location = 'test.html'
+                // window.location = 'test.html'
                 var selectedBusObj = document.getElementById('mysel').value
                     // alert("fname is: " + fname)
                 $table.bootstrapTable('refresh', {
