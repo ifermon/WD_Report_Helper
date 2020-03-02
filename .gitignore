@@ -4,3 +4,4 @@ table_headers_html.txt
 master_bus_obj_name_OPTION.txt
 master_list.json
 All_Fields.csv
+dist/*
