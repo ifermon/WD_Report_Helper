@@ -9,59 +9,69 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
         integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
     <link rel="stylesheet" href="https://unpkg.com/jquery-resizable-columns@0.2.3/dist/jquery.resizableColumns.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+    <style>
+        .rowcnt {
+            font-size: 65%;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="jumbotron">
-        <a href='selector.html'>Click here to return to index</a>
-    </div>
-    <div class="container-fluid">
-        <h1 id="table_title">Business Object: &table_title</h1>
-        <table class='table table-bordered table-hover' 
-            id='table' 
-            data-search='true' 
-            data-toolbar='#toolbar'
-            data-show-refresh='true' 
-            data-show-toggle='true' 
-            data-show-fullscreen='true' 
-            data-show-columns='true'
-            data-show-columns-toggle-all='true' 
-            data-show-search-clear-button='true' 
-            data-detail-view='true'
-            data-show-export='true' 
-            data-click-to-select='true' 
-            data-detail-formatter='detailFormatter'
-            data-minimum-count-columns='2' 
-            data-id-field='Field' 
-            data-show-footer='true' 
-            data-filter-control='true'
-            data-resizable='true'>
-            <thead>
-                <tr>
-                    <th data-visible='true' data-field='Field' data-filter-control='input' data-sortable='true'>Field
-                    </th>
-                    <th data-visible='true' data-field="Description" data-filter-control='input' data-sortable='true'>
-                        Description</th>
-                    <th data-visible='false' data-field='Business_Object' data-filter-control='select'
-                        data-sortable='true'>Business Object</th>
-                    <th data-visible='true' data-field='Report_Field_Type' data-filter-control='select'
-                        data-sortable='true'>Report Field Type</th>
-                    <th data-visible='true' data-field='Field_Source' data-filter-control='select' data-sortable='true'>
-                        Field Source</th>
-                    <th data-visible='false' data-field='is_Calculated_Field' data-filter-control='select'
-                        data-sortable='true'>is Calculated Field</th>
-                    <th data-visible='false' data-field='Calculated_Field_Function' data-filter-control='select'
-                        data-sortable='true'>Calculated Field Function</th>
-                    <th data-visible='true' data-field='Related_Business_Object_Name' data-filter-control='select'
-                        data-sortable='true'>Related Business Object Name</th>
+    <div class="main pl-0 pr-0">
+        <div class="header-firstnav sticky-top" style="height: 60px">
+            <nav class="navbar navbar-default navbar-dark bg-primary navbar-expand-lg">
+                <ul class="navbar-nav d-flex">
+                    <li class="nav-item d-flex ">
+                        <a class="nav-link" href="selector.html">Click here to return to index</a>
+                    </li>
+                </ul>
+                <div class="mx-auto order-0">
+                    <span class="navbar-brand mx-auto" href="#">&table_title<span class='rowcnt'
+                            id="row_count"></span></span>
+                </div>
+            </nav>
+        </div> <!-- header-firstnav -->
+        <div class="card mx-2">
+            <div class="card-body">
+                <table class='table table-bordered table-hover position: -webkit-sticky;
+                position: sticky;
+                top: 75px;' id='table' data-search='true' data-toolbar='#toolbar'
+                    data-show-refresh='true' data-show-toggle='true' data-show-fullscreen='true'
+                    data-show-columns='true' data-show-columns-toggle-all='true' data-show-search-clear-button='true'
+                    data-detail-view='true' data-show-export='true' data-click-to-select='true'
+                    data-detail-formatter='detailFormatter' data-minimum-count-columns='2' data-id-field='Field'
+                    data-filter-control='true' data-headerOnly='true' data-resizable='true'
+                    >
+                    <thead>
+                        <tr>
+                            <th data-visible='true' data-field='Field' data-filter-control='input' data-sortable='true'>
+                                Field
+                            </th>
+                            <th data-visible='true' data-field="Description" data-filter-control='input'
+                                data-sortable='true'>
+                                Description</th>
+                            <th data-visible='false' data-field='Business_Object' data-filter-control='select'
+                                data-sortable='true'>Business Object</th>
+                            <th data-visible='true' data-field='Report_Field_Type' data-filter-control='select'
+                                data-sortable='true'>Report Field Type</th>
+                            <th data-visible='true' data-field='Field_Source' data-filter-control='select'
+                                data-sortable='true'>
+                                Field Source</th>
+                            <th data-visible='false' data-field='is_Calculated_Field' data-filter-control='select'
+                                data-sortable='true'>is Calculated Field</th>
+                            <th data-visible='false' data-field='Calculated_Field_Function' data-filter-control='select'
+                                data-sortable='true'>Calculated Field Function</th>
+                            <th data-visible='true' data-field='Related_Business_Object_Name'
+                                data-filter-control='select' data-sortable='true'>Related Business Object Name</th>
 
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <code>.text-responsive</code>
+                        </tr>
+                    </thead>
+                </table>
+            </div> <!-- card-body -->
+        </div> <!-- card -->
+    </div> <!-- main -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js "
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin=" anonymous "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js "
@@ -92,9 +102,12 @@
 
         $(function () {
             var my_data = &table_rows
+            var s = document.getElementById('row_count')
             $(table).bootstrapTable({
                 data: my_data
             });
+            s.innerHTML = ' (Row count: ' + $(table).bootstrapTable('getOptions').totalRows + ')'
+
         });
     </script>
 
