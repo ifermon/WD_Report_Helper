@@ -22,7 +22,7 @@ __copyright__ = "Copyright 2020"
 __credits__ = ["None", ]
 __license__ = "MIT"
 __maintainer__ = "Ivan Fermon"
-__version__ = ".9"
+__version__ = "1.0"
 __status__ = "dev"
 
 print(sys.version)  # We need to be on 3.7+
@@ -52,7 +52,7 @@ html_table_template_path = "html_table_template.html"
 html_select_template_path = "html_select_template.html"
 object_distribution_dir = "./dist"
 index_distribution_dir = "./dist"
-csv_file_path = "All_Fields-Reduced.csv"  # Load the field definitions
+csv_file_path = "All_Fields.csv"  # Load the field definitions
 
 #  allows me to add simple attributes to lists like file name
 
